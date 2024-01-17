@@ -26,8 +26,8 @@ class App {
     this.httpServer.set('trust proxy', true);
 
     this.httpServer.get('/', (req: Request, res: Response) => {
-      console.log('Welcome to Basalt API');
-      res.send('Welcome to Basalt API');
+      console.log('Welcome to ASG API');
+      res.send('Welcome to ASG API');
     });
 
     // this.httpServer.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerConfig));

@@ -72,11 +72,11 @@ const serverLogger = createLogger({
   },
 });
 
-const trailsLogger = createLogger({
+const currencyLogger = createLogger({
   transports: [
     new transports.File({
       dirname: 'logs',
-      filename: 'trailsLogger.log',
+      filename: 'currencyLogger.log',
     }),
   ],
   format: format.combine(
@@ -90,11 +90,11 @@ const trailsLogger = createLogger({
   },
 });
 
-const cittiesLogger = createLogger({
+const conversionsLogger = createLogger({
   transports: [
     new transports.File({
       dirname: 'logs',
-      filename: 'cittiesLogger.log',
+      filename: 'conversionsLogger.log',
     }),
   ],
   format: format.combine(
@@ -107,32 +107,12 @@ const cittiesLogger = createLogger({
     service: 'WinstonExample',
   },
 });
-
-const trailByCityLogger = createLogger({
-  transports: [
-    new transports.File({
-      dirname: 'logs',
-      filename: 'trailByCityLogger.log',
-    }),
-  ],
-  format: format.combine(
-    format.timestamp(),
-    format.printf(({
-      timestamp, level, message, service,
-    }) => `[${timestamp}] ${service} ${level}: ${message}`),
-  ),
-  defaultMeta: {
-    service: 'WinstonExample',
-  },
-});
-
 
 export {
   appLogger,
   configLogger,
   errorHandlerLogger,
   serverLogger,
-  trailsLogger,
-  cittiesLogger,
-  trailByCityLogger,
+  currencyLogger,
+  conversionsLogger,
 };
