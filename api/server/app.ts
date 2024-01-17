@@ -4,6 +4,7 @@ import express, { NextFunction, Request, Response } from 'express';
 import { appLogger as log, errorHandlerLogger as errorLog } from './winstonLog';
 
 import CurrencyRouter from '../routes/currency/currency.routes';
+import ConversionsRouter from '../routes/conversions/conversions.routes';
 
 class App {
   public httpServer = express();
@@ -32,7 +33,9 @@ class App {
 
     // this.httpServer.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerConfig));
 
-    this.httpServer.use('/asgapi/cities', CurrencyRouter);
+    this.httpServer.use('/asgapi/currency', CurrencyRouter);
+
+    this.httpServer.use('/asgapi/conversions', ConversionsRouter);
 
     this.httpServer.use((err: Error, req: Request, res: Response, next: NextFunction) => {
       console.log(`error in url ${req.originalUrl} - error: ${err}`);
