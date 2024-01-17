@@ -1,13 +1,9 @@
 import { json, urlencoded } from 'body-parser';
 import express, { NextFunction, Request, Response } from 'express';
-import swaggerUi from 'swagger-ui-express';
 
 import { appLogger as log, errorHandlerLogger as errorLog } from './winstonLog';
-import swaggerConfig from '../swagger/swaggerConfig';
 
-import CitiesRouter from '../routes/cities/cities.routes';
-import WeatherRouter from '../routes/weather/weather.routes';
-import WeatherByCityRouter  from '../routes/weatherByCity/weatherByCity.routes';
+import CurrencyRouter from '../routes/currency/currency.routes';
 
 class App {
   public httpServer = express();
@@ -36,13 +32,7 @@ class App {
 
     // this.httpServer.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerConfig));
 
-    this.httpServer.use('/basaltapi-docs', swaggerUi.serve, swaggerUi.setup(swaggerConfig));
-
-    this.httpServer.use('/basaltapi/cities', CitiesRouter);
-
-    this.httpServer.use('/basaltapi/weather', WeatherRouter);
-
-    this.httpServer.use('/basaltapi/weatherbycity', WeatherByCityRouter);
+    this.httpServer.use('/asgapi/cities', CurrencyRouter);
 
     this.httpServer.use((err: Error, req: Request, res: Response, next: NextFunction) => {
       console.log(`error in url ${req.originalUrl} - error: ${err}`);
