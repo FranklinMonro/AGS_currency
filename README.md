@@ -23,6 +23,10 @@ ng serve --host 0.0.0.0 --poll 500
 ### Running api
 ![image](https://github.com/FranklinMonro/AGS_currency/assets/34055502/b5548c37-e4fe-4920-94c2-25dc05ea5e84)
 
+## Create tables
+![image](https://github.com/FranklinMonro/AGS_currency/assets/34055502/2200d8ca-e277-4ce8-93eb-c4c22c41c624)
+
+
 
 
 
