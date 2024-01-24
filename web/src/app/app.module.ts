@@ -19,20 +19,17 @@ import { MatPaginatorModule} from '@angular/material/paginator';
 
 import { ToastrModule } from 'ngx-toastr';
 
-import { WeatherByCityComponent } from './weather-by-city/weather-by-city.component';
-import { WeatherListComponent } from './Weather-list/weather-list.component';
 import { CurrencyComponent } from './currency/currency.component';
+import { ConversionListComponent } from './conversion-list/conversion-list.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    WeatherByCityComponent,
-    WeatherListComponent,
-    CurrencyComponent
+    CurrencyComponent,
+    ConversionListComponent
   ],
   imports: [
-    AppRoutingModule,
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
@@ -48,6 +45,7 @@ import { CurrencyComponent } from './currency/currency.component';
     MatSortModule,
     MatPaginatorModule,
     ToastrModule.forRoot(),
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
