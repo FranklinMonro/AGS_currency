@@ -18,7 +18,7 @@
 ## Running projects
 ### Running web
 ng serve --host 0.0.0.0 --poll 500
-![image](https://github.com/FranklinMonro/AGS_currency/assets/34055502/26cd82e2-3a6f-4d92-a3ac-525781677756)
+![image](https://github.com/FranklinMonro/AGS_currency/assets/34055502/eb0d7399-b93b-49a0-a3a9-fb26362b56a2)
 
 ### Running api
 ![image](https://github.com/FranklinMonro/AGS_currency/assets/34055502/b5548c37-e4fe-4920-94c2-25dc05ea5e84)
