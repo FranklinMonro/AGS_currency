@@ -9,13 +9,7 @@ const getCurrencyList = async (req: Request, res: Response, next: NextFunction):
   try {
     const options = {
       method: 'GET',
-      url: 'https://currency-converter5.p.rapidapi.com/currency/convert',
-      params: {
-        format: 'json',
-        from: 'AUD',
-        to: 'CAD',
-        amount: '1'
-      },
+      url: 'https://currency-converter5.p.rapidapi.com/currency/list',
       headers: {
         'X-RapidAPI-Key': '9dab233126mshb4192ee6a836697p1799f1jsn974963a92fe2',
         'X-RapidAPI-Host': 'currency-converter5.p.rapidapi.com'
