@@ -43,6 +43,7 @@ const convertCurrencies = async (
     };
 
     const response = await axios.request(options);
+    return response;
   } catch(error) {
     return error;
   }
