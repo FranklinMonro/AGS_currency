@@ -19,11 +19,24 @@
 	"forwardPorts": [4200, 3000, 5432],
 
 	// Use 'postCreateCommand' to run commands after the container is created.
-	// "postCreateCommand": "yarn install",
+	// "postCreateCommand": "bash ./1_install.sh",
 
 	// Configure tool-specific properties.
 	// "customizations": {},
 
 	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
-	"remoteUser": "root"
+	"remoteUser": "root",
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"Angular.ng-template",
+				"cyrilletuzi.angular-schematics",
+				"johnpapa.Angular2",
+				"dbaeumer.vscode-eslint",
+				"esbenp.prettier-vscode",
+				"oderwat.indent-rainbow",
+				"rangav.vscode-thunder-client"
+			]
+		}
+	}
 }
