@@ -14,8 +14,8 @@ export class AppService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getCities = (): Observable<Cities[]> => {
-    return this.httpClient.get<Cities>(`${environment.apiUrl}basaltapi/cities`,
+  getCurrecies = (): Observable<Cities[]> => {
+    return this.httpClient.get<Cities>(`${environment.apiUrl}asgapi/currency/currency`,
     { observe: 'response' }).pipe(
       map((res: any) => {
         return res.body;
@@ -24,8 +24,8 @@ export class AppService {
     )
   }
 
-  getWeather = (city: string): Observable<Weather[]> => {
-    return this.httpClient.get<Weather>(`${environment.apiUrl}basaltapi/weather`,
+  getCurrenciesConvert = (city: string): Observable<Weather[]> => {
+    return this.httpClient.get<Weather>(`${environment.apiUrl}asgapi/currency/convert`,
     { params: { city } , observe: 'response' }).pipe(
       map((res: any) => {
         return res.body;
