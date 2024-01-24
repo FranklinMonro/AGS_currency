@@ -4,6 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 
 import { AppComponent } from './app.component';
+import { AppRoutingModule } from './app.routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MatTabsModule } from '@angular/material/tabs';
@@ -20,15 +21,18 @@ import { ToastrModule } from 'ngx-toastr';
 
 import { WeatherByCityComponent } from './weather-by-city/weather-by-city.component';
 import { WeatherListComponent } from './Weather-list/weather-list.component';
+import { CurrencyComponent } from './currency/currency.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     WeatherByCityComponent,
-    WeatherListComponent
+    WeatherListComponent,
+    CurrencyComponent
   ],
   imports: [
+    AppRoutingModule,
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
