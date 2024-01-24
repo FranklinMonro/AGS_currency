@@ -1,3 +1,29 @@
 # AGS_currency
-### Node Version
-![image](https://github.com/FranklinMonro/AGS_currency/assets/34055502/dcf47867-d06c-450c-9165-80fd2513738b)
+
+## Creating devcontainer
+### Install extension
+![image](https://github.com/FranklinMonro/AGS_currency/assets/34055502/4a207c94-5541-4357-9c9c-edf2a6cb3c66)
+
+### Build devcontainer
+![image](https://github.com/FranklinMonro/AGS_currency/assets/34055502/bd582b5a-eb16-436b-8138-b7c6f4cc6c14)
+
+
+## Install node_modules
+### Manual installation web
+![image](https://github.com/FranklinMonro/AGS_currency/assets/34055502/f2bae084-69a4-4e9a-b485-98ce7c322ba0)
+
+### Manual installation api
+![image](https://github.com/FranklinMonro/AGS_currency/assets/34055502/c23db733-6cd6-4a27-86cb-4c6c7716272d)
+
+## Running projects
+### Running web
+ng serve --host 0.0.0.0 --poll 500
+![image](https://github.com/FranklinMonro/AGS_currency/assets/34055502/26cd82e2-3a6f-4d92-a3ac-525781677756)
+
+### Running api
+![image](https://github.com/FranklinMonro/AGS_currency/assets/34055502/b5548c37-e4fe-4920-94c2-25dc05ea5e84)
+
+
+
+
+
