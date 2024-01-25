@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 
 import environment from '../enviroments/enviroments';
-import CurrencyRates from './app.model';
+import { CurrencyRates } from './app.model';
 
 @Injectable({
   providedIn: 'root'

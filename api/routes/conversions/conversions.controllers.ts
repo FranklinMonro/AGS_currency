@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/naming-convention */
-import { randomUUID } from 'crypto';
+// import { randomUUID } from 'crypto';
 
 import { Request, Response, NextFunction } from 'express';
 import { SEQUILIZE_NEW } from '../../server/config';
@@ -28,19 +28,20 @@ const getconversionList = async (req: Request, res: Response, next: NextFunction
 
 const postConversion = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
     try {
-        const { from_country , to_country, from_amount, to_amount} = req.body;
-        const post = await currency_conversion.create({
-            id: randomUUID(),
-            from_country,
-            to_country,
-            from_amount,
-            to_amount,
-            converted_date: new Date().toISOString(),
-        }).catch((err) => {
-            log.log('error', `Error in post, error: ${err}`);
-            throw new Error('Error in post');
-        });
-        res.status(201).send(post);
+        // const { from_country , to_country, from_amount, rate_for_amount} = req.body;
+        // const post = await currency_conversion.create({
+        //     id: randomUUID(),
+        //     from_country,
+        //     to_country,
+        //     from_amount,
+        //     rate_for_amount,
+        //     converted_date: new Date().toISOString(),
+        // }).catch((err) => {
+        //     log.log('error', `Error in post, error: ${err}`);
+        //     throw new Error('Error in post');
+        // });
+        // res.status(201).send(post);
+        res.sendStatus(200);
     } catch (error) {
         log.error(`Erron in postConversion, error: ${error}`);
         next(error);
@@ -51,10 +52,11 @@ const putConversion = async (req: Request, res: Response, next: NextFunction): P
     try {
         const { id , from_country , to_country, from_amount } = req.body;
         const amount = await convertCurrencies(from_amount!, from_country!, to_country);
+        console.log(amount);
         const updateWeather = await currency_conversion.update(
             {
                 from_amount,
-                to_amount: Number(amount),
+                rate_for_amount: '',
                 converted_date: new Date().toISOString(),
             },
             {

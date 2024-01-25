@@ -33,3 +33,41 @@
         <input matInput placeholder="Amount" type="number" disabled>
     </mat-form-field>
 </div>
+
+<div *ngIf="convertedForm">
+    <form [formGroup]="convertedForm">
+        <div  class="example-form-fields">
+            <mat-form-field class="example-input-width">
+                <mat-label>Convert Amount</mat-label>
+                <input matInput placeholder="From Country" formControlName="from_country" disabled>
+            </mat-form-field>
+            &nbsp;
+            <mat-form-field class="example-input-width">
+                <mat-label>Convert Amount</mat-label>
+                <input matInput placeholder="From Country" formControlName="to_country" disabled>
+            </mat-form-field>
+            &nbsp;
+            <mat-form-field class="example-input-width">
+                <mat-label>Convert Amount</mat-label>
+                <input matInput placeholder="From Country" formControlName="from_amount" disabled>
+            </mat-form-field>
+            &nbsp;
+            <mat-form-field class="example-input-width">
+                <mat-label>Convert Amount</mat-label>
+                <input matInput placeholder="From Country" formControlName="currency_name" disabled>
+            </mat-form-field>
+            &nbsp;
+            <mat-form-field class="example-input-width">
+                <mat-label>Convert Amount</mat-label>
+                <input matInput placeholder="From Country" formControlName="rate" disabled>
+            </mat-form-field>
+            &nbsp;
+            <mat-form-field class="example-input-width">
+                <mat-label>Convert Amount</mat-label>
+                <input matInput placeholder="From Country" formControlName="rate_for_amount" disabled>
+            </mat-form-field>
+            &nbsp;
+        </div>
+
+    </form>
+</div>
