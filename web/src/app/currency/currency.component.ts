@@ -84,6 +84,27 @@ export class CurrencyComponent implements OnInit, OnDestroy  {
     });
   }
 
+  onSubmit = (): void => {
+    this.loader = true;
+    this.subcription = this.appService.postConversion(this.convertedForm!.value).subscribe({
+      next: () => {
+        this.convertedForm?.reset();
+        this.countryFrom = undefined;
+        this.countryTo = undefined;
+        this.convertAmout = undefined;
+      },
+      error: (err: ErrorEvent) => {
+        this.toastr.error(err.message, 'ERROR', {
+          timeOut: 3000,
+        });
+        this.loader = false
+      },
+      complete: () => {
+        this.loader = false
+      }
+    });
+  }
+
   ngOnDestroy(): void {
     if (this.subcription) {
       this.subcription.unsubscribe();

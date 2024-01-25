@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 
 import environment from '../enviroments/enviroments';
-import { CurrencyRates } from './app.model';
+import { CurrencyRates, CurrencyConverted } from './app.model';
 
 @Injectable({
   providedIn: 'root'
@@ -34,25 +34,25 @@ export class AppService {
     )
   }
 
-  // postWeather = (weather: Weather): Observable<any> => {
-  //   return this.httpClient.post<Weather>(`${environment.apiUrl}basaltapi/weatherbycity`, weather,
-  //   { observe: 'response' }).pipe(
-  //     map((res: any) => {
-  //       return res.body;
-  //     }),
-  //     catchError((err: HttpErrorResponse) => { throw new Error(err.message); }),
-  //   )
-  // }
+  postConversion = (convertion: CurrencyConverted): Observable<any> => {
+    return this.httpClient.post<CurrencyConverted>(`${environment.apiUrl}asgapi/conversions`, convertion,
+    { observe: 'response' }).pipe(
+      map((res: any) => {
+        return res.body;
+      }),
+      catchError((err: HttpErrorResponse) => { throw new Error(err.message); }),
+    )
+  }
 
-  // getWeatherByCity = (): Observable<WeatherByCity[]> => {
-  //   return this.httpClient.get<WeatherByCity>(`${environment.apiUrl}basaltapi/weatherbycity`,
-  //   { observe: 'response' }).pipe(
-  //     map((res: any) => {
-  //       return res.body;
-  //     }),
-  //     catchError((err: HttpErrorResponse) => { throw new Error(err.message); }),
-  //   )
-  // }
+  getConversionList = (): Observable<CurrencyConverted[]> => {
+    return this.httpClient.get<CurrencyConverted>(`${environment.apiUrl}asgapi/conversions`,
+    { observe: 'response' }).pipe(
+      map((res: any) => {
+        return res.body;
+      }),
+      catchError((err: HttpErrorResponse) => { throw new Error(err.message); }),
+    )
+  }
 
   // updateWeatherByCity = (id: string, city: string): Observable<WeatherByCity[]> => {
   //   return this.httpClient.put<WeatherByCity>(`${environment.apiUrl}basaltapi/weatherbycity`, { id, city },

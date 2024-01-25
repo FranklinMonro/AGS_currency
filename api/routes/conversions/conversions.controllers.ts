@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/naming-convention */
-// import { randomUUID } from 'crypto';
+import { randomUUID } from 'crypto';
 
 import { Request, Response, NextFunction } from 'express';
 import { SEQUILIZE_NEW } from '../../server/config';
@@ -13,9 +13,9 @@ const { currency_conversion } = initModels(SEQUILIZE_NEW);
 
 const getconversionList = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
     try {
-        const list = currency_conversion.findAll({
+        const list = await currency_conversion.findAll({
             raw: true,
-        }).catch((err) => {
+        }).catch((err: unknown) => {
             log.log('error', `Error in getting list, error: ${err}`);
             throw new Error('Error in getting list');
         });
@@ -28,20 +28,28 @@ const getconversionList = async (req: Request, res: Response, next: NextFunction
 
 const postConversion = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
     try {
-        // const { from_country , to_country, from_amount, rate_for_amount} = req.body;
-        // const post = await currency_conversion.create({
-        //     id: randomUUID(),
-        //     from_country,
-        //     to_country,
-        //     from_amount,
-        //     rate_for_amount,
-        //     converted_date: new Date().toISOString(),
-        // }).catch((err) => {
-        //     log.log('error', `Error in post, error: ${err}`);
-        //     throw new Error('Error in post');
-        // });
-        // res.status(201).send(post);
-        res.sendStatus(200);
+        const { 
+            from_country , 
+            to_country, 
+            from_amount,
+            currency_name,
+            rate,
+            rate_for_amount
+        } = req.body;
+        const post = await currency_conversion.create({
+            id: randomUUID(),
+            from_country,
+            to_country,
+            from_amount,
+            currency_name,
+            rate,
+            rate_for_amount,
+            converted_date: new Date().toISOString(),
+        }).catch((err: unknown) => {
+            log.log('error', `Error in post, error: ${err}`);
+            throw new Error('Error in post');
+        });
+        res.status(201).send(post);
     } catch (error) {
         log.error(`Erron in postConversion, error: ${error}`);
         next(error);
@@ -64,7 +72,7 @@ const putConversion = async (req: Request, res: Response, next: NextFunction): P
                     id,
                 },
             },
-        ).catch((err) => {
+        ).catch((err: unknown) => {
             log.log('error', `Error in update, error: ${err}`);
             throw new Error('Error in update');
         });
@@ -82,7 +90,7 @@ const deleteConversion = async (req: Request, res: Response, next: NextFunction)
             where: {
                 id: incommingID as string,
             },
-        }).catch((err) => {
+        }).catch((err: unknown) => {
             log.log('error', `Error in delete, error: ${err}`);
             throw new Error('Error in delete');
         });

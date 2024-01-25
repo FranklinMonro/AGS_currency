@@ -57,7 +57,7 @@ export class currency_conversion extends Model<currency_conversionAttributes, cu
       allowNull: false
     },
     rate_for_amount: {
-      type:DataTypes.CHAR(50),
+      type: DataTypes.CHAR(50),
       allowNull: false
     },
     converted_date: {
