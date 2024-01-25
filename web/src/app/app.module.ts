@@ -4,7 +4,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 
 import { AppComponent } from './app.component';
-import { AppRoutingModule } from './app.routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MatTabsModule } from '@angular/material/tabs';
@@ -45,7 +44,6 @@ import { ConversionListComponent } from './conversion-list/conversion-list.compo
     MatSortModule,
     MatPaginatorModule,
     ToastrModule.forRoot(),
-    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

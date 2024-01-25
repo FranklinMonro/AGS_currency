@@ -16,7 +16,7 @@
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	// This can be used to network with other containers or with the host.
-	"forwardPorts": [4200, 3000, 5432],
+	"forwardPorts": [4300, 4200, 3000, 5432],
 
 	// Use 'postCreateCommand' to run commands after the container is created.
 	// "postCreateCommand": "bash ./1_install.sh",
