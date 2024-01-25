@@ -2,8 +2,7 @@ import { Request, Response, NextFunction } from 'express';
 
 import { currencyLogger as log } from '../../server/winstonLog';
 import axios from 'axios';
-
-import Converted from './currency.models';
+import CurrencyRates from './currency.models';
 
 const getCurrencyList = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   try {
@@ -28,7 +27,7 @@ const convertCurrencies = async (
   convertAmout: string, 
   countryFrom: string, 
   countryTo: string
-): Promise<Converted | Error> => {
+): Promise<CurrencyRates | Error> => {
   try {
     const options = {
       method: 'GET',
@@ -46,8 +45,7 @@ const convertCurrencies = async (
     };
 
     const response = await axios.request(options);
-    console.log('response', response);
-    return {};
+    return Object.values(response.data.rates)[0] as CurrencyRates;
   } catch(error) {
     return error as Error;
   }
@@ -55,8 +53,8 @@ const convertCurrencies = async (
 
 const getConvertCurrencies = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   try {
-    const { convertAmout, countryFrom, countryTo } = req.body;
-    const response = await convertCurrencies(convertAmout, countryFrom, countryTo);
+    const { convertAmout, countryFrom, countryTo } = req.query;
+    const response = await convertCurrencies(convertAmout as string, countryFrom  as string, countryTo  as string);
 
     if (response instanceof Error) {
       next(response);
@@ -71,4 +69,5 @@ const getConvertCurrencies = async (req: Request, res: Response, next: NextFunct
 export {
   getCurrencyList,
   getConvertCurrencies,
+  convertCurrencies,
 };

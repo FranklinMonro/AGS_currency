@@ -50,8 +50,10 @@ CREATE TABLE public.currency_conversion (
     id uuid NOT NULL,
     from_country character(50) NOT NULL,
     to_country character(50) NOT NULL,
-    from_amount integer NOT NULL,
-    to_amount integer NOT NULL,
+    from_amount character(50) NOT NULL,
+    currency_name character(50) NOT NULL,
+    rate character(50) NOT NULL,
+    rate_for_amount character(50) NOT NULL,
     converted_date date NOT NULL
 );
 

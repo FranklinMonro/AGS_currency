@@ -1,33 +1,35 @@
 <mat-spinner class="spinner" *ngIf="loader"></mat-spinner>
 <br>
-<div *ngIf="!loader">
+<div *ngIf="!loader" class="example-form-fields">
     <mat-form-field>
         <mat-label>Currency From</mat-label>
-        <mat-select (selectionChange)="convertCurrency($event)">
-        <mat-option 
-            *ngFor="let currency of availableCurrenciesListFrom | keyvalue" 
-            [value]="currency.key">
-            {{ currency.value }}
-        </mat-option>
-        </mat-select>
-    </mat-form-field>
-    
-    <div *ngIf="availableCurrenciesListTo!.length > 0">
-        <mat-form-field>
-            <mat-label>Currency To</mat-label>
-            <mat-select>
+        <mat-select [(ngModel)]="countryFrom">
             <mat-option 
-                *ngFor="let currency of availableCurrenciesListTo | keyvalue" 
+                *ngFor="let currency of availableCurrenciesList | keyvalue" 
                 [value]="currency.key">
                 {{ currency.value }}
             </mat-option>
-            </mat-select>
-        </mat-form-field>
-    
-        <mat-form-field class="example-full-width">
-            <mat-label>Convert Amount</mat-label>
-            <input matInput placeholder="Amount" type="number">
-        </mat-form-field>
-    </div>
-    
+        </mat-select>
+    </mat-form-field>
+    &nbsp;
+    <mat-form-field>
+        <mat-label>Currency To</mat-label>
+        <mat-select [(ngModel)]="countryTo">
+            <mat-option 
+                *ngFor="let currency of availableCurrenciesList | keyvalue" 
+                [value]="currency.key">
+                {{ currency.value }}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    &nbsp;
+    <mat-form-field class="example-input-width">
+        <mat-label>Convert Amount</mat-label>
+        <input matInput placeholder="Amount" type="number" (keyup)="getConvertedAmount($event)" [(ngModel)]="convertAmout">
+    </mat-form-field>
+    &nbsp;
+    <mat-form-field class="example-input-width">
+        <mat-label>Amount</mat-label>
+        <input matInput placeholder="Amount" type="number" disabled>
+    </mat-form-field>
 </div>

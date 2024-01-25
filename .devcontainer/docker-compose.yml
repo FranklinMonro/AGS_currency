@@ -50,5 +50,5 @@ volumes:
   postgres-data:
   pgadmin-data:
 
-# sequelize-auto -h db -d postgres -u postgres -x postgres postgres -o ./models -ls t --dialect postgres
+# sequelize-auto -h db -d postgres -u postgres -x postgres -o ./models -l ts --dialect postgres
 # ng serve --host 0.0.0.0 --poll 500 --port 4300

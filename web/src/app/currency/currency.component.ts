@@ -2,7 +2,6 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AppService } from '../app.service';
 import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
-import { MatSelectChange } from '@angular/material/select';
 
 @Component({
   selector: 'app-currency',
@@ -14,15 +13,14 @@ export class CurrencyComponent implements OnInit, OnDestroy  {
 
   loader: boolean = false;
 
-  availableCurrenciesListFrom: object[] | undefined;
+  availableCurrenciesList: object | undefined;
 
   countryFrom: string | undefined;
-
-  availableCurrenciesListTo: object[] | undefined;
 
   countryTo: string | undefined;
 
   convertAmout: string | undefined;
+
   constructor(
     private appService: AppService,
     private toastr: ToastrService,
@@ -37,7 +35,7 @@ export class CurrencyComponent implements OnInit, OnDestroy  {
     this.loader = true;
     this.subcription = this.appService.getCurrecies().subscribe({
       next: (res) => {
-        this.availableCurrenciesListFrom = res;
+        this.availableCurrenciesList = res;
       },
       error: (err: ErrorEvent) => {
         this.toastr.error(err.message, 'ERROR', {
@@ -51,14 +49,24 @@ export class CurrencyComponent implements OnInit, OnDestroy  {
     });
   };
 
-  convertCurrency = (event: MatSelectChange) => {
-    this.countryFrom = event.value;
-    this.availableCurrenciesListTo = this.availableCurrenciesListFrom!.filter((countries) => {
-      Object.keys(countries)[0] !== this.countryFrom
+  getConvertedAmount = (event: Event): void => {
+    this.convertAmout = (event.target as HTMLInputElement).value;
+    this.loader = true;
+    this.subcription = this.appService.getCurrenciesConvert(this.convertAmout, this.countryFrom!, this.countryTo!).subscribe({
+      next: (res) => {
+        console.log(res);
+      },
+      error: (err: ErrorEvent) => {
+        this.toastr.error(err.message, 'ERROR', {
+          timeOut: 3000,
+        });
+        this.loader = false
+      },
+      complete: () => {
+        this.loader = false
+      }
     });
-  };
-
-  
+  }
 
   ngOnDestroy(): void {
     if (this.subcription) {

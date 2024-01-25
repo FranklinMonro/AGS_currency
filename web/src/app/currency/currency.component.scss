@@ -12,6 +12,31 @@
     width: 100%;
 }
 
-.example-full-width {
-    width: 100%;
+.example-input-width {
+    width: 20%;
+}
+
+.example-container mat-form-field+mat-form-field {
+    margin-left: 8px;
+}
+
+.example-container mat-form-field {
+    width: 220px;
+}
+
+.example-container form {
+    margin-bottom: 20px;
+}
+
+.example-container form>* {
+    margin: 12px 0;
+}
+
+.example-container .mat-radio-button {
+    margin: 0 12px;
+}
+
+.example-form-fields {
+    display: flex;
+    align-items: flex-start;
 }
