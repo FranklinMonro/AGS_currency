@@ -1,0 +1,72 @@
+<mat-spinner class="spinner" *ngIf="loader"></mat-spinner>
+<div *ngIf="!loader">
+    <mat-form-field>
+        <mat-label>Filter</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
+    </mat-form-field>
+    &nbsp; 
+    &nbsp;   
+    <button mat-raised-button color="accent">Update Table</button>
+    <div class="mat-elevation-z8">
+        <table *ngIf="dataSource" mat-table [dataSource]="dataSource" matSort>
+            <!-- from_country Column -->
+            <ng-container matColumnDef="from_country">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> From Country </th>
+                <td mat-cell *matCellDef="let row"> {{row.from_country}} </td>
+            </ng-container>
+
+            <!-- to_country Column -->
+            <ng-container matColumnDef="to_country">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> To Country </th>
+                <td mat-cell *matCellDef="let row"> {{row.to_country}} </td>
+            </ng-container>
+
+            <!-- to_country Column -->
+            <ng-container matColumnDef="to_country">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> To Country </th>
+                <td mat-cell *matCellDef="let row"> {{row.to_country}} </td>
+            </ng-container>
+
+            <!-- from_amount Column -->
+            <ng-container matColumnDef="from_amount">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> From Amount </th>
+                <td mat-cell *matCellDef="let row"> {{row.from_amount}} </td>
+            </ng-container>
+
+            <!-- currency_name Column -->
+            <ng-container matColumnDef="currency_name">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Currency Name </th>
+                <td mat-cell *matCellDef="let row"> {{row.currency_name}} </td>
+            </ng-container>
+
+            <!-- rate Column -->
+            <ng-container matColumnDef="rate">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Rate </th>
+                <td mat-cell *matCellDef="let row"> {{row.rate}} </td>
+            </ng-container>
+
+            <!-- rate_for_amount Column -->
+            <ng-container matColumnDef="rate_for_amount">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Rate For Amount </th>
+                <td mat-cell *matCellDef="let row"> {{row.rate_for_amount}} </td>
+            </ng-container>
+
+            <!-- Update Column -->
+            <ng-container matColumnDef="update">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Update </th>
+                <td mat-cell *matCellDef="let row">
+                <button mat-raised-button color="accent" (click)="updateWeather(row.id, row.city)">Update</button>
+                </td>
+            </ng-container>
+            
+            
+            <!-- Delete Column -->
+            <ng-container matColumnDef="delete">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Delete </th>
+                <td mat-cell *matCellDef="let row">
+                <button mat-raised-button color="warn" (click)="deleteWeather(row.id)">Delete</button>
+                </td>
+            </ng-container>
+        </table>
+    </div>
+</div>

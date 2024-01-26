@@ -1,0 +1,68 @@
+<mat-spinner class="spinner" *ngIf="loader"></mat-spinner>
+<br>
+<div *ngIf="!loader" class="example-form-fields">
+    <mat-form-field>
+        <mat-label>Currency From</mat-label>
+        <mat-select [(ngModel)]="countryFrom">
+            <mat-option 
+                *ngFor="let currency of availableCurrenciesList | keyvalue" 
+                [value]="currency.key">
+                {{ currency.value }}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    &nbsp;
+    <mat-form-field>
+        <mat-label>Currency To</mat-label>
+        <mat-select [(ngModel)]="countryTo">
+            <mat-option 
+                *ngFor="let currency of availableCurrenciesList | keyvalue" 
+                [value]="currency.key">
+                {{ currency.value }}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    &nbsp;
+    <mat-form-field class="example-input-width">
+        <mat-label>Convert Amount</mat-label>
+        <input matInput placeholder="Amount" type="number" (keyup)="getConvertedAmount($event)" [(ngModel)]="convertAmout">
+    </mat-form-field>
+</div>
+
+<div *ngIf="convertedForm">
+    <form [formGroup]="convertedForm" (ngSubmit)="onSubmit()">
+        <div  class="example-form-fields">
+            <mat-form-field class="example-input-width">
+                <mat-label>From Country</mat-label>
+                <input matInput placeholder="From Country" formControlName="from_country" readonly>
+            </mat-form-field>
+            &nbsp;
+            <mat-form-field class="example-input-width">
+                <mat-label>To Country</mat-label>
+                <input matInput placeholder="To Country" formControlName="to_country" readonly>
+            </mat-form-field>
+            &nbsp;
+            <mat-form-field class="example-input-width">
+                <mat-label>From Amount</mat-label>
+                <input matInput placeholder="From Amount" formControlName="from_amount" readonly>
+            </mat-form-field>
+            &nbsp;
+            <mat-form-field class="example-input-width">
+                <mat-label>Currency Name</mat-label>
+                <input matInput placeholder="Currency Name" formControlName="currency_name" readonly>
+            </mat-form-field>
+            &nbsp;
+            <mat-form-field class="example-input-width">
+                <mat-label>Rate</mat-label>
+                <input matInput placeholder="Rate" formControlName="rate" readonly>
+            </mat-form-field>
+            &nbsp;
+            <mat-form-field class="example-input-width">
+                <mat-label>Rate For Amount</mat-label>
+                <input matInput placeholder="Rate For Amount" formControlName="rate_for_amount" readonly>
+            </mat-form-field>
+            &nbsp;
+        </div>
+        <button type="submit" mat-raised-button color="primary">Submit</button>
+    </form>
+</div>

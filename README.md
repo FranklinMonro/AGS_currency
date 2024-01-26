@@ -29,8 +29,3 @@ docker exec -it ags_currency_devcontainer-db-1 bash
  psql -U postgres -f ./docker-entrypoint-initdb.d/create_tables.sql
 ![image](https://github.com/FranklinMonro/AGS_currency/assets/34055502/2200d8ca-e277-4ce8-93eb-c4c22c41c624)
 
-
-
-
-
-
