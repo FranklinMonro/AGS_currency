@@ -7,6 +7,7 @@ import { initModels } from '../../models/init-models';
 
 import { conversionsLogger as log } from '../../server/winstonLog';
 import { convertCurrencies } from '../currency/currency.controllers';
+import CurrencyRates from '../currency/currency.models';
 
 const { currency_conversion } = initModels(SEQUILIZE_NEW);
 
@@ -60,11 +61,15 @@ const putConversion = async (req: Request, res: Response, next: NextFunction): P
     try {
         const { id , from_country , to_country, from_amount } = req.body;
         const amount = await convertCurrencies(from_amount!, from_country!, to_country);
-        console.log(amount);
+
+        if (amount instanceof Error) {
+            next(amount);
+        }
+        const { rate_for_amount } = amount as CurrencyRates;
         const updateWeather = await currency_conversion.update(
             {
                 from_amount,
-                rate_for_amount: '',
+                rate_for_amount,
                 converted_date: new Date().toISOString(),
             },
             {
@@ -86,7 +91,7 @@ const putConversion = async (req: Request, res: Response, next: NextFunction): P
 const deleteConversion = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
     try {
         const { id: incommingID = ''  } = req.query;
-        const deleteRow = await currency_conversion.destroy({
+        await currency_conversion.destroy({
             where: {
                 id: incommingID as string,
             },
@@ -94,7 +99,7 @@ const deleteConversion = async (req: Request, res: Response, next: NextFunction)
             log.log('error', `Error in delete, error: ${err}`);
             throw new Error('Error in delete');
         });
-        res.status(204).send(deleteRow);
+        res.sendStatus(204);
     } catch (error) {
         log.error(`Erron in deleteConversion, error: ${error}`);
         next(error);
